@@ -1,0 +1,19 @@
+<nav>
+  <h2 *ngIf="!isLogin">
+    Class Attendance & iBeacon
+  </h2>
+  <ul *ngIf="isLogin">
+    <li routerLink="/home">
+      <a routerLinkActive="active">Home</a>
+    </li>
+    <li routerLink="/course">
+      <a routerLinkActive="active">Course</a>
+    </li>
+    <li routerLink="/attendance">
+      <a routerLinkActive="active">Attendance</a>
+    </li>
+    <li (click)="logout()" class="logout">
+      <a>Logout</a>
+    </li>
+  </ul>
+</nav>

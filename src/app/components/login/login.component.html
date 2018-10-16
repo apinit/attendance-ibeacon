@@ -1,0 +1,9 @@
+<div class="login">
+  <h2>Account Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="email" [(ngModel)]="user.email" placeholder="Email...">
+    <input type="password" formControlName="password" [(ngModel)]="user.password" placeholder="Password...">
+
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+</div>
