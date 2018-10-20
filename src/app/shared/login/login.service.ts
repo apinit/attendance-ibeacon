@@ -21,7 +21,7 @@ export class LoginService {
         this.router.navigate(['/home']);
       })
       .catch((err) => {
-        console.log(err.code);
+        // console.log(err.code);
         if (err.code === 'auth/user-not-found') {
           this.toastr.error('กรุณาลองใหม่อีกครั้ง', 'อีเมลล์ไม่ถูกต้อง !');
         } else if (err.code === 'auth/wrong-password') {

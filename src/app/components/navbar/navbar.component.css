@@ -2,6 +2,7 @@ nav{
     width: 100%;
     background: #5d8ffc;
     color: #fff;
+    top: 0;
 }
 nav h2{
     text-align: center;
@@ -43,6 +44,7 @@ ul li a{
         width: 100%;
         background: #5d8ffc;
         color: #fff;
+        top: 0;
     }
     nav h2{
         text-align: center;
@@ -80,3 +82,5 @@ ul li a{
         text-decoration: none;
     }
 }
+
+/************************************************************************************************/

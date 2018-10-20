@@ -1,0 +1,109 @@
+<div class="course-detail">
+  <div class="course-info">
+    <div class="card">
+        <div class="card-header" style="display: flex;">
+          รายละเอียด
+          <div class="action">
+              <button class="btn btn-warning" data-toggle="modal" data-target="#updateCourse" (click)="onEdit()">แก้ไข</button>
+              <button class="btn btn-danger">ลบรายวิชา</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li><span>รหัสวิชา</span> : {{coursed?.id}}</li>
+            <li><span>ชื่อวิชา</span> : {{coursed?.name}}</li>
+            <li><span>กลุ่มเรียน</span> : {{coursed?.group}}</li>
+            <li><span>ภาคการศึกษา</span> : {{coursed?.semester}}</li>
+            <li><span>ปีการศึกษา</span> : {{coursed?.year}}</li>
+          </ul>
+        </div>
+
+      </div>
+  </div> <!--course-info-->
+  <div class="student-manage">
+    <div class="card">
+      <div class="card-header">
+        เพิ่มนักศึกษา
+      </div>
+      <form [formGroup]="studentForm" (ngSubmit)="newStudent()">
+        <label for="sid">รหัสนักศึกษา</label>
+        <input type="text" id="sid" formControlName="id" [(ngModel)]="student.id" placeholder="ป้อนรหัสนักศึกษา">
+
+        <label for="sname">ชื่อ - นามสกุล</label>
+        <input type="text" id="sname" formControlName="name" [(ngModel)]="student.name" placeholder="ชื่อ - นามสกุล">
+
+        <button type="submit">บันทึก</button>
+      </form>
+    </div>
+  </div> <!--student-manage-->
+
+</div>
+
+<div class="display">
+  <div class="display-student">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">รหัสนักศึกษา</th>
+          <th scope="col">ชื่อ - นามสกุล</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students; let i = index">
+          <td scope="row">{{i+1}}</td>
+          <td>{{student?.id}}</td>
+          <td>{{student?.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateCourse" (click)="onEdit()">
+  Launch demo modal
+</button> -->
+  
+  <!-- Modal -->
+<div class="modal fade" id="updateCourse" tabindex="-1" role="dialog" aria-labelledby="updateCourse" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateCourse">แก้ไขข้อมูลรายวิชา</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formCreate" (ngSubmit)="updateCourse()">
+            <label for="id">รหัสวิชา</label>
+            <input type="text" placeholder="ป้อนรหัสวิชา" id="id" [(ngModel)]="course.id" formControlName="id">
+  
+            <label for="name">ชื่อวิชา</label>
+            <input type="text" placeholder="ป้อนชื่อวิชา" id="name" [(ngModel)]="course.name" formControlName="name">
+  
+            <label for="group">กลุ่มเรียน</label>
+            <input type="number" id="group" placeholder="กลุ่มเรียน" [(ngModel)]="course.group" formControlName="group">
+  
+            <label for="semester">ภาคการศึกษา</label>
+            <select id="semester" [(ngModel)]="course.semester" formControlName="semester">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+  
+            <label for="year">ปีการศึกษา</label>
+            <input type="text" id="year" placeholder="ป้อนปีการศึกษา" [(ngModel)]="course.year" formControlName="year">
+  
+            <button type="submit" class="btn" [disabled]="formCreate.invalid">บันทึก</button>
+        </form>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>

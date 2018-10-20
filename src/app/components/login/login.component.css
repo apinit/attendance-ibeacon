@@ -53,7 +53,7 @@ input, button, h2{
     background: #8eb1ff;
     color: #fff;
     border: 1px solid #8eb1ff;
-    cursor: pointer;
+    cursor: not-allowed;
 }
 @media(min-width: 800px){
     input, button, h2{
@@ -111,6 +111,6 @@ input, button, h2{
         background: #8eb1ff;
         color: #fff;
         border: 1px solid #8eb1ff;
-        cursor: pointer;
+        cursor: not-allowed;
     }
 }

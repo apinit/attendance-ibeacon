@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CourseService } from '../../shared/course/course.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Course } from '../../shared/models';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -7,9 +10,67 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
+  formCreate: FormGroup;
+  course: Course = new Course();
+  courses: Course[];
+  courseCheck: Course[];
+  constructor(
+    private courseService: CourseService,
+    private router: Router,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.form();
+    this.courseService.getCourseList().snapshotChanges().subscribe((course) => {
+      this.courses = [];
+      course.forEach(element => {
+        var y = element.payload.toJSON();
+        y["id"] = element.key;
+        this.courses.push(y as Course);
+      });
+    });
   }
 
+  form(){
+    this.formCreate = this.fb.group({
+      id: ['', Validators.compose([
+        Validators.required
+      ])],
+      name: ['', Validators.compose([
+        Validators.required
+      ])],
+      group: ['', Validators.compose([
+        Validators.required, Validators.min(1)
+      ])],
+      semester: ['', Validators.compose([
+        Validators.required
+      ])],
+      year: ['', Validators.compose([
+        Validators.required
+      ])],
+    });
+  }
+  newCourse(){
+    for(let i = 0; i < this.courses.length; i++){
+      if(this.courses[i].id == this.course.id){
+        this.courseService.updateCourse(this.course);
+        break;
+      }else{
+        this.courseService.createCourse(this.course);
+        break;
+      }
+    }
+    // this.courseService.operate(this.course);
+    this.resetForm();
+  }
+  resetForm() {
+    if (this.formCreate != null) {
+      this.formCreate.reset();
+      // console.log('Reset');
+    }
+  }
+  courseSelected(course: Course){
+    this.courseService.setCourseSelected(course);
+  }
 }

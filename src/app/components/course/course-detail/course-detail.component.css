@@ -1,3 +1,6 @@
+*{
+    font-family: 'Nunito', sans-serif; 
+}
 .course{
     font-family: 'Nunito', sans-serif;
     padding: 20px;
@@ -16,10 +19,10 @@
     width: 100%;
     /* display: flex; */
 }
-.table tr:hover > td{
+/* .table tr:hover > td{
     background: #c7d9ff;
     cursor: pointer;
-}
+} */
 .card .card-header{
     /* font-family: 'Nunito', sans-serif; */
     font-size: 20px;
@@ -41,7 +44,7 @@ form #id, #name, #group, #semester, #year{
 }
 form label{
     font-family: 'Nunito', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
 }
 form #id:focus{
     border: 1px solid #888;
@@ -86,7 +89,70 @@ form button:disabled{
     border: 1px solid #8eb1ff;
     cursor: not-allowed;
 }
+.card-header{
+    font-weight: 500;
+}
+.card ul li{
+    font-size: 20px;
+}
+.card-body ul li span{
+    font-weight: 400;
+}
+.card-body ul li{
+    list-style: square;
+    margin-bottom: 10px;
+}
+.course-detail{
+    display: block;
+    margin: 15px;
+    /* border: 1px solid salmon; */
+    /* margin-right: 15px; */
+}
+.course-info, .student-manage{
+    /* padding-right: 50px; */
+    padding-left: 0px;
+    margin-right: 20px;
+    display: block;
+    width: 100%;
+    /* border: 1px solid salmon; */
+}
+.course-info .card, .student-manage .card{
+    display: block;
+    /* margin: 15px; */
+    width: 100%;
+    /* border: 1px solid salmon; */
+}
+/* .student-manage{
+    margin-right: 20px;
+} */
+.student-manage .card form{
+    margin: 20px;
+}
+.student-manage input{
+    width: 100%;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px;
+    outline: none;
+    margin-bottom: 15px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+}
 
+.display .display-student{
+    /* display: flex; */
+    font-family: 'Nunito', sans-serif;
+    padding: 0;
+    margin: 15px;
+}
+.course-info .card .card-header .action{
+    margin-left: 50%;
+}
+
+/*Media***********************************************************************************/
 @media(min-width: 900px){
     .course{
         font-family: 'Nunito', sans-serif;
@@ -101,12 +167,12 @@ form button:disabled{
         border-radius: 10px;
     }
     .table{
-        margin: 20px;
+        margin: 15px;
         width: 100%;
     }
     .card .card-header{
         /* font-family: 'Nunito', sans-serif; */
-        font-size: 25px;
+        font-size: 20px;
     }
     form #id, #name, #group, #semester, #year{
         font-family: 'Nunito', sans-serif;
@@ -169,8 +235,65 @@ form button:disabled{
         border: 1px solid #8eb1ff;
         cursor: not-allowed;
     }
-    .table tr:hover > td{
-        background: #c7d9ff;
-        cursor: pointer;
+    .card-header{
+        font-weight: 500;
+    }
+    .card ul li{
+        font-size: 20px;
+    }
+    .card-body ul li span{
+        font-weight: 400;
+    }
+    .card-body ul li{
+        list-style: square;
+        margin-bottom: 17px;
+    }
+
+    .course-detail{
+        display: flex;
+        /* border: 1px solid salmon; */
+        margin-right: 15px;
+    }
+    .course-info .card .card-header .action{
+        margin-left: 50%;
+    }
+    .course-info, .student-manage{
+        /* padding-right: 50px; */
+        padding-left: 0px;
+        margin-right: 20px;
+        display: block;
+        width: 100%;
+        /* border: 1px solid salmon; */
+    }
+    .course-info .card, .student-manage .card{
+        display: block;
+        /* margin: 15px; */
+        width: 100%;
+        /* border: 1px solid salmon; */
+    }
+    .student-manage{
+        margin-right: 20px;
+    }
+    .student-manage .card form{
+        margin: 20px;
+    }
+    .student-manage input{
+        width: 100%;
+        display: block;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: #fff;
+        padding: 10px;
+        outline: none;
+        margin-bottom: 15px;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+    }
+
+    .display .display-student{
+        display: flex;
+        font-family: 'Nunito', sans-serif;
+        padding: 0;
     }
 }

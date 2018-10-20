@@ -11,6 +11,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 // Service
 import { LoginService } from './shared/login/login.service';
+import { CourseService } from './shared/course/course.service';
 import { AuthGuard } from './guard/auth.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,14 +19,17 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CourseComponent } from './components/course/course.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
+import { CourseDetailComponent } from './components/course/course-detail/course-detail.component';
 
 
 const router: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'course', component: CourseComponent, canActivate: [AuthGuard]},
+  {path: 'course', component: CourseComponent},
+  {path: 'course-detail', component: CourseDetailComponent},
   {path: 'attendance', component: AttendanceComponent, canActivate: [AuthGuard]},
+  {path: '**', component: HomeComponent}
 ];
 
 @NgModule({
@@ -35,7 +39,8 @@ const router: Routes = [
     HomeComponent,
     NavbarComponent,
     CourseComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    CourseDetailComponent
   ],
   imports: [
     FormsModule,
@@ -52,7 +57,8 @@ const router: Routes = [
   providers: [
     ToastrService,
     LoginService,
-    AuthGuard
+    AuthGuard,
+    CourseService
   ],
   bootstrap: [AppComponent]
 })
