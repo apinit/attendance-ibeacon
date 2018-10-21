@@ -5,7 +5,7 @@
           รายละเอียด
           <div class="action">
               <button class="btn btn-warning" data-toggle="modal" data-target="#updateCourse" (click)="onEdit()">แก้ไข</button>
-              <button class="btn btn-danger">ลบรายวิชา</button>
+              <button class="btn btn-danger" (click)="removeCourse()">ลบรายวิชา</button>
           </div>
         </div>
         <div class="card-body">
@@ -32,7 +32,7 @@
         <label for="sname">ชื่อ - นามสกุล</label>
         <input type="text" id="sname" formControlName="name" [(ngModel)]="student.name" placeholder="ชื่อ - นามสกุล">
 
-        <button type="submit">บันทึก</button>
+        <button type="submit" [disabled]="studentForm.invalid">บันทึก</button>
       </form>
     </div>
   </div> <!--student-manage-->

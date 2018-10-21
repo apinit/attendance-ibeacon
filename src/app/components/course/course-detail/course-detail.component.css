@@ -13,6 +13,7 @@
     /* display: flex; */
     border-radius: 10px;
     margin-bottom: 20px;
+    border: 1px solid #ccdcff;
 }
 .table{
     /* margin: 20px; */
@@ -26,7 +27,8 @@
 .card .card-header{
     /* font-family: 'Nunito', sans-serif; */
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
+    background: #ccdcff;;
 }
 form #id, #name, #group, #semester, #year{
     font-family: 'Nunito', sans-serif;
@@ -164,6 +166,7 @@ form button:disabled{
         margin: 20px;
         width: 60%;
         display: block;
+        border: 1px solid #ccdcff;
         border-radius: 10px;
     }
     .table{
@@ -172,6 +175,7 @@ form button:disabled{
     }
     .card .card-header{
         /* font-family: 'Nunito', sans-serif; */
+        background: #ccdcff;
         font-size: 20px;
     }
     form #id, #name, #group, #semester, #year{
@@ -294,6 +298,10 @@ form button:disabled{
     .display .display-student{
         display: flex;
         font-family: 'Nunito', sans-serif;
+        padding: 0;
+    }
+    .action{
+        margin: 0;
         padding: 0;
     }
 }

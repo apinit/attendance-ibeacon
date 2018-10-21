@@ -1,9 +1,10 @@
 export class Course{
-    id: string;
-    name: string;
-    semester: any;
-    group: number;
-    year: any;
+    id?: string;
+    name?: string;
+    semester?: any;
+    group?: number;
+    year?: any;
+    Students?: any;
 }
 
 export class Student{

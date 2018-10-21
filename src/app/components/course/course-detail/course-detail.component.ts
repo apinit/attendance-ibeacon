@@ -12,10 +12,11 @@ export class CourseDetailComponent implements OnInit {
   coursed: Course;
   formCreate: FormGroup;
   studentForm: FormGroup;
-  courseId: any;
+  courseId: string;
   course: Course = new Course();
   student: Student = new Student();
-  courses: Course[];
+
+  // courses: Course[];
   students = [];
   constructor(
     private courseService: CourseService,
@@ -28,23 +29,22 @@ export class CourseDetailComponent implements OnInit {
   ngOnInit() {
     this.form();
     this.studentForms();
-    this.coursed = this.courseService.getCourseDetails();
-    this.courseService.getStudentsList(this.courseService.courseId).valueChanges().subscribe(student => {
-      this.students = student;
-      console.log(student);
+    this.courseService.getCourseSet().valueChanges().subscribe(id => {
+      // console.log(id);
+      if(id == null){
+        this.router.navigate(['/course']);
+      }else{
+        this.courseService.getOneCourse(id).valueChanges().subscribe(course => {
+          this.coursed = course;
+          // console.log(course);
+          if(course != null){
+            this.courseService.getStudentsList(this.coursed.id).valueChanges().subscribe(student => {
+              this.students = student;
+            });
+          }
+        });
+      }
     });
-    // this.courseService.getCourseDetails();
-    // this.courseService.getCourseList().snapshotChanges().subscribe((course) => {
-    //   this.courses = [];
-    //   course.forEach(element => {
-    //     var y = element.payload.toJSON();
-    //     y["id"] = element.key;
-    //     this.courses.push(y as Course);
-    //   });
-    // });
-    if(!this.coursed){
-      this.router.navigate(['/course']);
-    }
   }
   studentForms(){
     this.studentForm = this.fb.group({
@@ -78,6 +78,9 @@ export class CourseDetailComponent implements OnInit {
 
   onEdit(){
     this.course = Object.assign({}, this.coursed);
+  }
+  removeCourse(){
+    this.courseService.deleteCourse(this.coursed.id);
   }
   newStudent(){
     this.courseService.insertStudent(this.student, this.coursed.id);

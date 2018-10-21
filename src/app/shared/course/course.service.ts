@@ -15,14 +15,6 @@ export class CourseService {
     private toastr: ToastrService
   ) {}
 
-  // operate(course: Course){
-  //   if(course.id == null || course.id == undefined){
-  //     this.createCourse(course);
-  //   }else{
-  //     this.updateCourse(course);
-  //   }
-  // }
-
   createCourse(course: Course){
     this.db.object(`Course/${course.id}/`).set({
       id: course.id,
@@ -52,8 +44,11 @@ export class CourseService {
   }
   deleteCourse(id: any){
     this.db.object(`Course/${id}`).remove()
-      .then((res) => {
-        this.router.navigate(['/course']);
+      .then(() => {
+        this.db.object(`Course-set`).remove().then(() => {
+          this.router.navigate(['/course']);
+        });
+        this.toastr.success('ลบรายวิชาสำเร็จ');
       })
       .catch((err) => {
         console.log(err);
@@ -64,32 +59,22 @@ export class CourseService {
 
 
   setCourseSelected(course: Course){
-    this.courseDetails = course;
-    this.courseId = course.id;
-    this.router.navigate(['/course-detail']);
-    // this.db.object(`Coure-set/id/`).set({
-    //   id: course.id
-    // }).then(() => {
-    //   this.router.navigate(['/course-detail']);
-    // });
+    this.db.object(`Course-set/`).set({
+      id: course.id
+    }).then(() => {
+      this.router.navigate(['/course-detail']);
+    });
   }
+
+
   getCourseSet(){
-    return this.db.object(`Coure-set/id/`);
+    return this.db.object(`Course-set/id`);
   }
-  getCourseDetails(){
-    // let id = localStorage.getItem(this.courseId);
-    // console.log(id);
-    return this.courseDetails;
-  }
-
-
-
-
   getCourseList(){
     return this.db.list(`Course/`);
   }
-  getOneCourse(idCourse: any){
-    return this.db.object(`Course/${idCourse}`);
+  getOneCourse(courseId: any){
+    return this.db.object(`Course/${courseId}`);
   }
   getStudentsList(courseId: any){
     return this.db.list(`Course/${courseId}/Students`);
@@ -98,6 +83,10 @@ export class CourseService {
     this.db.object(`Course/${courseId}/Students/${student.id}/`).set({
       id: student.id,
       name: student.name
+    }).then(() => {
+      this.toastr.success('เพิ่มนักศึกษาสำเร็จ');
+    }).catch((err) => {
+      console.log('Error happen in insert student!!!');
     });
   }
 }
