@@ -52,16 +52,7 @@ export class CourseComponent implements OnInit {
     });
   }
   newCourse(){
-    for(let i = 0; i < this.courses.length; i++){
-      if(this.courses[i].id == this.course.id){
-        this.courseService.updateCourse(this.course);
-        break;
-      }else{
-        this.courseService.createCourse(this.course);
-        break;
-      }
-    }
-    // this.courseService.operate(this.course);
+    this.courseService.createCourse(this.course);
     this.resetForm();
   }
   resetForm() {
