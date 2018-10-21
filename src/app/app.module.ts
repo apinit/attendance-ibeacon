@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Routes, RouterModule } from '@angular/router';
+import { CommonModule, DatePipe } from '@angular/common';
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -44,9 +45,10 @@ const router: Routes = [
   ],
   imports: [
     FormsModule,
+    CommonModule,
+    BrowserModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(router),
-    BrowserModule,
     ReactiveFormsModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
@@ -58,7 +60,8 @@ const router: Routes = [
     ToastrService,
     LoginService,
     AuthGuard,
-    CourseService
+    CourseService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

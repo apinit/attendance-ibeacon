@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./attendance.component.css']
 })
 export class AttendanceComponent implements OnInit {
+  submitCourse = false;
   scheduleDate: Schedule[];
   students: Student[];
   courses: Course[];
@@ -32,14 +33,21 @@ export class AttendanceComponent implements OnInit {
     });
   }
   courseSelect(){
-    console.log(this.courseSelected.id);
+    this.submitCourse = true;
+    // console.log(this.courseSelected.id);
     this.courseService.getStudentsList(this.courseSelected.id).valueChanges().subscribe((student) => {
       this.students = student;
-      console.log(student);
+      // console.log(student);
     });
     this.courseService.getScheduleDate(this.courseSelected.id).valueChanges().subscribe((schedule) => {
       this.scheduleDate = schedule;
-      console.log(schedule);
+      // console.log(schedule);
     });
+  }
+  addCheck(){
+    for(let i = 0; i < this.students.length; i++){
+      this.courseService.createCheckClass(this.courseSelected.id, this.students[i].id);
+    }
+    this.submitCourse = false;
   }
 }

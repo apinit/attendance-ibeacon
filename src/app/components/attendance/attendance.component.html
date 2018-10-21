@@ -13,7 +13,9 @@
       </form>
     </div> <!--body-->
   </div> <!--card-->
-
+  <div class="action">
+    <button (click)="addCheck()" [disabled]="submitCourse == false">เพิ่มการเช็ค</button>
+  </div>
     <!--display-score-->
   <table class="table table-bordered">
     <thead class="thead-light">
