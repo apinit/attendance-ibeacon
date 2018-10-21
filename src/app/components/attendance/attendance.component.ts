@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./attendance.component.css']
 })
 export class AttendanceComponent implements OnInit {
+  len = 0;
   submitCourse = false;
   scheduleDate: Schedule[];
   students: Student[];
@@ -37,6 +38,8 @@ export class AttendanceComponent implements OnInit {
     // console.log(this.courseSelected.id);
     this.courseService.getStudentsList(this.courseSelected.id).valueChanges().subscribe((student) => {
       this.students = student;
+      this.len = this.students.length;
+      // console.log(this.len);
       // console.log(student);
     });
     this.courseService.getScheduleDate(this.courseSelected.id).valueChanges().subscribe((schedule) => {

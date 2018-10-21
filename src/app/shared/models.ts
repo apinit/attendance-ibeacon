@@ -5,6 +5,7 @@ export class Course{
     group?: number;
     year?: any;
     Students?: Student;
+    iBeacon?: any;
 }
 
 export class Student{
@@ -20,4 +21,9 @@ export class Attendance{
 
 export class Schedule{
     date?: any;
+}
+
+export class iBeacon{
+    id?: any;
+    name?: string;
 }

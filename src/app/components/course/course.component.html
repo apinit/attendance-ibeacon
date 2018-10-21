@@ -16,6 +16,7 @@
 
           <label for="semester">ภาคการศึกษา</label>
           <select id="semester" [(ngModel)]="course.semester" formControlName="semester">
+            <option selected hidden value="undefined">เลือกภาคการศึกษา</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

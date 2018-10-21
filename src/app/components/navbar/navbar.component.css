@@ -3,6 +3,9 @@ nav{
     background: #5d8ffc;
     color: #fff;
     top: 0;
+    position: sticky;
+    z-index: 1000;
+    /* display: flex; */
 }
 nav h2{
     text-align: center;
@@ -20,8 +23,8 @@ ul{
 }
 ul li{
     list-style: none;
-    padding: 15px;
-    display: flex;
+    padding: 20px;
+    display: inline-block;
     cursor: pointer;
 }
 ul li:hover{
@@ -45,6 +48,8 @@ ul li a{
         background: #5d8ffc;
         color: #fff;
         top: 0;
+        position: sticky;
+        z-index: 1000;
     }
     nav h2{
         text-align: center;

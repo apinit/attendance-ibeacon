@@ -150,8 +150,8 @@ form button:disabled{
     padding: 0;
     margin: 15px;
 }
-.course-info .card .card-header .action{
-    margin-left: 50%;
+.course-info .card .card-header button{
+    margin-left: 20px;
 }
 
 /*Media***********************************************************************************/
@@ -300,8 +300,7 @@ form button:disabled{
         font-family: 'Nunito', sans-serif;
         padding: 0;
     }
-    .action{
-        margin: 0;
-        padding: 0;
+    .course-info .card .card-header button{
+        margin-left: 20px;
     }
 }

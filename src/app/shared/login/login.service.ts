@@ -2,15 +2,18 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { AngularFireDatabase } from 'angularfire2/database';
 @Injectable()
 export class LoginService {
 
   authState: any = null;
+  isLogin: boolean;
 
   constructor(
     private afAuth: AngularFireAuth,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private db: AngularFireDatabase
   ) { }
 
   login(user: User){
@@ -18,6 +21,8 @@ export class LoginService {
       this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
       .then((res) => {
         resolve(res);
+        this.isLogin = true;
+        this.db.object(`isLogin`).set(true);
         this.router.navigate(['/home']);
       })
       .catch((err) => {
@@ -36,6 +41,8 @@ export class LoginService {
   logout(){
     this.afAuth.auth.signOut().then(res => {
       this.router.navigate(['/login']);
+      this.db.object(`isLogin`).set(false);
+      this.isLogin = false;
     });
   }
   getAuth() {

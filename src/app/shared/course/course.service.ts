@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Router } from '@angular/router';
-import { Course, Student, Schedule } from '../models';
+import { Course, Student, Schedule, iBeacon } from '../models';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 @Injectable()
@@ -135,4 +135,16 @@ export class CourseService {
       score: 0
     });
   }
+
+  insertIBeacon(courseId: any, ibeacon: iBeacon, platform: any){
+    this.db.object(`Course/${courseId}/iBeacon/${platform}/`).set({
+      id: ibeacon.id,
+      name: ibeacon.name
+    }).then(() => {
+      this.toastr.success('Add iBeacon Success');
+    });
+  }
+  // getiBeacon(){
+
+  // }
 }

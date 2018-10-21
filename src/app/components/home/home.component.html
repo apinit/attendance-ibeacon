@@ -1,3 +1,52 @@
-<p>
-  home works!
-</p>
+<div class="home">
+  <div class="card ibeacon">
+    <div class="card-header">
+      Add iBeacon
+    </div>
+    <div class="card-body">
+      <form [formGroup]="ibeaconForm" (ngSubmit)="createiBeacon()">
+        <label for="id">iBeacon ID</label>
+        <input type="text" id="id" placeholder="Enter iBeacon ID..." formControlName="id" [(ngModel)]="ibeacon.id">
+        <label for="name">iBeacon Name</label>
+        <input type="text" id="name" placeholder="Enter iBeacon Name..." formControlName="name" [(ngModel)]="ibeacon.name">
+        <label for="course">เลือกรายวิชา</label>
+        <select id="course" [(ngModel)]="courseSelected.id" formControlName="course">
+          <option selected hidden value="undefined">เลือกรายวิชา</option>
+          <option *ngFor="let course of courses" [value]="course.id">{{course.name}}</option>
+        </select>
+        <label for="platform">เลือก Platforms</label>
+        <select id="platform" [(ngModel)]="selectPlatform" formControlName="platform">
+          <option selected hidden value="undefined">Select Platform</option>
+          <option *ngFor="let platform of platforms" [value]="platform">{{platform}}</option>
+        </select>
+        <button type="submit" [disabled]="ibeaconForm.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+      <div class="card-header">
+        iBeacon List (only iOS)
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">iBeacon Name</th>
+              <th scope="col">ชื่อวิชา</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let course of courses; let i = index">
+              <td *ngIf="course.iBeacon">{{course.iBeacon?.ios.name}}</td>
+              <td *ngIf="course.iBeacon">{{course.name}}</td>
+              <!-- <td>{{course?.name}}</td> -->
+            </tr>
+          </tbody>
+        </table>
+        <!-- <ul *ngFor="let course of courses; let i = index">
+          <li>{{course.iBeacon.ios.name}}</li>
+        </ul> -->
+      </div>
+    </div>
+</div>
