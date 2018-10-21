@@ -1,3 +1,43 @@
-<p>
-  attendance works!
-</p>
+<div class="attendance">
+  <div class="card">
+    <div class="card-header">
+      เลือกรายวิชา
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formSelectedCourse" (ngSubmit)="courseSelect()">
+          <select id="course" [(ngModel)]="courseSelected.id" formControlName="id">
+              <option selected hidden value="undefined">เลือกรายวิชา</option>
+            <option *ngFor="let course of courses" [value]="course.id">{{course.name}}</option>
+          </select>
+          <button type="submit" [disabled]="formSelectedCourse.invalid">Submit</button>
+      </form>
+    </div> <!--body-->
+  </div> <!--card-->
+
+    <!--display-score-->
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">รหัสนักศึกษา</th>
+        <th scope="col" id="studentName">ชื่อ - นามสกุล</th>
+        <th *ngFor="let sch of scheduleDate; let no = index">
+            <span 
+            data-toggle="tooltip" 
+            data-placement="top" 
+            title="{{sch.date}}">{{no+1}}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students; let i = index">
+        <td scope="row">{{i+1}}</td>
+        <td>{{student.id}}</td>
+        <td id="studentName">{{student.name}}</td>
+        <td *ngFor="let sch of scheduleDate">
+          {{student.attendance[sch.date]?.score}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

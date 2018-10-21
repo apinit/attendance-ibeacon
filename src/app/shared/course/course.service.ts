@@ -89,4 +89,7 @@ export class CourseService {
       console.log('Error happen in insert student!!!');
     });
   }
+  getScheduleDate(courseId: any){
+    return this.db.list(`Course/${courseId}/schedule/attendance/`);
+  }
 }
