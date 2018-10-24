@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../../shared/course/course.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Course, Student } from '../../../shared/models';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
@@ -21,9 +21,10 @@ export class CourseDetailComponent implements OnInit {
   constructor(
     private courseService: CourseService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private routeActive: ActivatedRoute
   ) {
-
+    this.routeActive.parent.params.subscribe(params => console.log(params.id + ' this params'));
    }
 
   ngOnInit() {

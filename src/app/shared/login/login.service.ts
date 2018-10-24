@@ -10,7 +10,7 @@ export class LoginService {
   isLogin: boolean;
 
   constructor(
-    private afAuth: AngularFireAuth,
+    public afAuth: AngularFireAuth,
     private toastr: ToastrService,
     private router: Router,
     private db: AngularFireDatabase

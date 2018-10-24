@@ -5,7 +5,7 @@ export class Course{
     group?: number;
     year?: any;
     Students?: Student;
-    iBeacon?: any;
+    iBeacon?: iBeacon;
 }
 
 export class Student{

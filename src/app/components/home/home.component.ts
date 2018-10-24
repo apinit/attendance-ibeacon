@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.courseService.getCourseList().valueChanges().subscribe(course => {
       this.courses = course;
-      // console.log(course);
+      console.log(this.courses);
     });
     this.formBeacon();
   }
