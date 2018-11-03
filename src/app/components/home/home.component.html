@@ -38,7 +38,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let course of courses; let i = index">
-              <td *ngIf="course.iBeacon">{{course.iBeacon?.ios.name}}</td>
+              <td *ngIf="course.iBeacon">{{course.iBeacon?.ios}}</td>
               <td *ngIf="course.iBeacon">{{course.name}}</td>
             </tr>
           </tbody>

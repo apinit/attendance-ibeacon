@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../shared/course/course.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Course, Student, Attendance, Schedule } from '../../shared/models';
+import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-attendance',
@@ -9,8 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./attendance.component.css']
 })
 export class AttendanceComponent implements OnInit {
+  date: any;
   len = 0;
   submitCourse = false;
+  today = true;
   scheduleDate: Schedule[];
   students: Student[];
   courses: Course[];
@@ -19,7 +22,8 @@ export class AttendanceComponent implements OnInit {
   constructor(
     private courseService: CourseService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
@@ -35,6 +39,7 @@ export class AttendanceComponent implements OnInit {
   }
   courseSelect(){
     this.submitCourse = true;
+    let dateCheck = this.getCurrentDate();
 
     // Clear Array protected error in HTML page
     this.students = [];
@@ -46,6 +51,17 @@ export class AttendanceComponent implements OnInit {
     });
     this.courseService.getScheduleDate(this.courseSelected.id).valueChanges().subscribe((schedule) => {
       this.scheduleDate = schedule;
+      if(this.scheduleDate.length > 0){
+        this.scheduleDate.forEach((date) => {
+          if(date.date == dateCheck){
+            this.today = false;
+          }else{
+            this.today = true;
+          }
+        });
+      }else{
+        this.today = true;
+      }
     });
   }
   addCheck(){
@@ -53,5 +69,11 @@ export class AttendanceComponent implements OnInit {
       this.courseService.createCheckClass(this.courseSelected.id, this.students[i].id);
     }
     this.submitCourse = false;
+  }
+
+  getCurrentDate(){
+    let tr = new Date();
+    this.date = this.datePipe.transform(tr, 'dd-MM-yyyy');
+    return this.date;
   }
 }

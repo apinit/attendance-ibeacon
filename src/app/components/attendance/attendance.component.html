@@ -14,7 +14,7 @@
     </div> <!--body-->
   </div> <!--card-->
   <div class="action">
-    <button (click)="addCheck()" [disabled]="submitCourse == false || len == 0">เพิ่มการเช็ค</button>
+    <button (click)="addCheck()" [disabled]="submitCourse == false || len == 0 || today == false">เพิ่มการเช็ค</button>
   </div>
     <!--display-score-->
   <table class="table table-bordered">
