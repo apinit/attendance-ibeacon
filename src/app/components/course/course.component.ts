@@ -58,7 +58,6 @@ export class CourseComponent implements OnInit {
   resetForm() {
     if (this.formCreate != null) {
       this.formCreate.reset();
-      // console.log('Reset');
     }
   }
   courseSelected(course: Course){

@@ -21,8 +21,6 @@ export class LoginService {
       this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
       .then((res) => {
         resolve(res);
-        this.isLogin = true;
-        this.db.object(`isLogin`).set(true);
         this.router.navigate(['/home']);
       })
       .catch((err) => {
@@ -41,8 +39,6 @@ export class LoginService {
   logout(){
     this.afAuth.auth.signOut().then(res => {
       this.router.navigate(['/login']);
-      this.db.object(`isLogin`).set(false);
-      this.isLogin = false;
     });
   }
   getAuth() {

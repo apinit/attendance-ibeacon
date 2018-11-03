@@ -6,23 +6,29 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import { LoginService } from '../shared/login/login.service';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../shared/auth.service';
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate{
+  authen: boolean;
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,
-    private loginService: LoginService
-  ) { }
+    private authService: AuthService
+  ) {}
   canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      return this.loginService.afAuth.authState
-      .take(1)
-      .map(authState => !! authState)
-      .do( authenticated => {
-         if (!authenticated) {
-           this.router.navigate(['/login']);
-         }
-      });
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean>|boolean{
+    if(this.authService.authenticated){
+      return true;
     }
+    return this.afAuth.authState
+    .take(1)
+    .map(authState => !! authState)
+    .do( authenticated => {
+        if (!authenticated) {
+          this.router.navigate(['/login']);
+        }
+    });
+  }
 }

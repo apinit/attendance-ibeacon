@@ -21,11 +21,8 @@ export class CourseDetailComponent implements OnInit {
   constructor(
     private courseService: CourseService,
     private router: Router,
-    private fb: FormBuilder,
-    private routeActive: ActivatedRoute
-  ) {
-    this.routeActive.parent.params.subscribe(params => console.log(params.id + ' this params'));
-   }
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.form();
@@ -38,10 +35,13 @@ export class CourseDetailComponent implements OnInit {
         this.courseService.getOneCourse(id).valueChanges().subscribe(course => {
           this.coursed = course;
           // console.log(course);
+          this.students = [];
           if(course != null){
             this.courseService.getStudentsList(this.coursed.id).valueChanges().subscribe(student => {
               this.students = student;
             });
+          }else{
+            this.router.navigate(['/course']);
           }
         });
       }

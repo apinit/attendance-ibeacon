@@ -35,16 +35,17 @@ export class AttendanceComponent implements OnInit {
   }
   courseSelect(){
     this.submitCourse = true;
-    // console.log(this.courseSelected.id);
+
+    // Clear Array protected error in HTML page
+    this.students = [];
+    this.scheduleDate = [];
+    
     this.courseService.getStudentsList(this.courseSelected.id).valueChanges().subscribe((student) => {
       this.students = student;
       this.len = this.students.length;
-      // console.log(this.len);
-      // console.log(student);
     });
     this.courseService.getScheduleDate(this.courseSelected.id).valueChanges().subscribe((schedule) => {
       this.scheduleDate = schedule;
-      // console.log(schedule);
     });
   }
   addCheck(){

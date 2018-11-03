@@ -255,31 +255,16 @@ form button:disabled{
 
     .course-detail{
         display: flex;
-        /* border: 1px solid salmon; */
-        margin-right: 15px;
-    }
-    .course-info .card .card-header .action{
-        margin-left: 50%;
+        /* margin-right: 15px; */
     }
     .course-info, .student-manage{
-        /* padding-right: 50px; */
-        padding-left: 0px;
-        margin-right: 20px;
-        display: block;
+        margin: 0;
+        display: flex;
         width: 100%;
         /* border: 1px solid salmon; */
     }
     .course-info .card, .student-manage .card{
-        display: block;
-        /* margin: 15px; */
         width: 100%;
-        /* border: 1px solid salmon; */
-    }
-    .student-manage{
-        margin-right: 20px;
-    }
-    .student-manage .card form{
-        margin: 20px;
     }
     .student-manage input{
         width: 100%;

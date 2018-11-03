@@ -97,7 +97,7 @@ export class CourseService {
         }
       });
     }).catch((err) => {
-      console.log('Error happen in insert student!!!');
+      console.log('Error happen for insert student!!!');
     });
   }
   getScheduleDate(courseId: any){
@@ -137,14 +137,11 @@ export class CourseService {
   }
 
   insertIBeacon(courseId: any, ibeacon: iBeacon, platform: any){
-    this.db.object(`Course/${courseId}/iBeacon/${platform}/`).set({
+    this.db.object(`Course/${courseId}/iBeacon/${platform}/${ibeacon.id}/`).set({
       id: ibeacon.id,
       name: ibeacon.name
     }).then(() => {
       this.toastr.success('Add iBeacon Success');
     });
   }
-  // getiBeacon(){
-
-  // }
 }

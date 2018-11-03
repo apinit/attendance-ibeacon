@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 // Service
 import { LoginService } from './shared/login/login.service';
 import { CourseService } from './shared/course/course.service';
+import { AuthService } from './shared/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -61,7 +62,8 @@ const router: Routes = [
     LoginService,
     AuthGuard,
     CourseService,
-    DatePipe
+    DatePipe,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
