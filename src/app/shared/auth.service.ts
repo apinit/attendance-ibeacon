@@ -3,7 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class AuthService {
 
-  authState: any;
+  authState = null;
   constructor(
     private auth: AngularFireAuth
   ) {
@@ -12,7 +12,7 @@ export class AuthService {
     })
   }
 
-  get authenticated(){
+  get authenticated(): boolean{
     return this.authState !== null;
   }
 }

@@ -10,8 +10,8 @@ export class AppComponent{
     private auth: AngularFireAuth
   ) {
     localStorage.removeItem('firebase:previous_websocket_failure');
-    this.auth.authState.subscribe((auth) => {
-      console.log(auth);
-    });
+    // this.auth.authState.subscribe((auth) => {
+    //   console.log(auth);
+    // });
   }
 }
