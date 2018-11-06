@@ -1,0 +1,15 @@
+<div class="sign-up">
+  <h2>สมัครสมาชิก</h2>
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+    <label for="fname">Name :</label>
+    <input type="text" name="fname" placeholder="First Name ..." formControlName="fname" [(ngModel)]="user.fname">
+    <label for="lname">Last Name :</label>
+    <input type="text" name="lname" placeholder="Last Name ..." formControlName="lname" [(ngModel)]="user.lname">
+    <label for="email">Email :</label>
+    <input type="email" name="email" placeholder="Email..." formControlName="email" [(ngModel)]="user.email">
+    <label for="password">Password :</label>
+    <input type="password" name="password" placeholder="Password..." formControlName="password" [(ngModel)]="user.password">
+    <button type="submit" [disabled]="signUpForm.invalid">ลงทะเบียน</button>
+  </form>
+  <a routerLink="/login">เข้าสู่ระบบ</a>
+</div>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Course, Student, Schedule, iBeacon } from '../models';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
+import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class CourseService {
 
@@ -12,15 +13,23 @@ export class CourseService {
   course: Course = new Course();
   schedule: Schedule[];
   date: any;
+  userUid: string;
   constructor(
     private db: AngularFireDatabase,
     private router: Router,
     private toastr: ToastrService,
-    private datePipe: DatePipe
-  ) {}
+    private datePipe: DatePipe,
+    private auth: AngularFireAuth
+  ) {
+    this.auth.authState.subscribe((auth) => {
+      if(auth){
+        this.userUid = auth.uid;
+      }
+    });
+  }
 
   createCourse(course: Course){
-    this.db.object(`Course/${course.id}/`).set({
+    this.db.object(`${this.userUid}/Course/${course.id}/`).set({
       id: course.id,
       name: course.name,
       group: course.group,
@@ -34,7 +43,7 @@ export class CourseService {
   }
 
   updateCourse(course: Course){
-    this.db.object(`Course/${course.id}/`).update({
+    this.db.object(`${this.userUid}/Course/${course.id}/`).update({
       id: course.id,
       name: course.name,
       group: course.group,
@@ -46,10 +55,11 @@ export class CourseService {
       this.toastr.error(err.code, 'Error');
     });
   }
+
   deleteCourse(id: any){
-    this.db.object(`Course/${id}`).remove()
+    this.db.object(`${this.userUid}/Course/${id}`).remove()
       .then(() => {
-        this.db.object(`Course-set`).remove().then(() => {
+        this.db.object(`${this.userUid}/Course-set`).remove().then(() => {
           this.router.navigate(['/course']);
         });
         this.toastr.success('ลบรายวิชาสำเร็จ');
@@ -60,32 +70,29 @@ export class CourseService {
       });
   }
 
-
-
   setCourseSelected(course: Course){
-    this.db.object(`Course-set/`).set({
+    this.db.object(`${this.userUid}/Course-set/`).set({
       id: course.id
     }).then(() => {
       this.router.navigate(['/course-detail']);
     });
   }
 
-
   getCourseSet(){
-    return this.db.object(`Course-set/id`);
+    return this.db.object(`${this.userUid}/Course-set/id`);
   }
   getCourseList(){
-    return this.db.list(`Course/`);
+    return this.db.list(`${this.userUid}/Course/`);
   }
   getOneCourse(courseId: any){
-    return this.db.object(`Course/${courseId}`);
+    return this.db.object(`${this.userUid}/Course/${courseId}`);
   }
   getStudentsList(courseId: any){
-    return this.db.list(`Course/${courseId}/Students`);
+    return this.db.list(`${this.userUid}/Course/${courseId}/Students`);
   }
   insertStudent(student: Student, courseId: any){
     let studentId = student.id;
-    this.db.object(`Course/${courseId}/Students/${student.id}/`).set({
+    this.db.object(`${this.userUid}/Course/${courseId}/Students/${student.id}/`).set({
       id: student.id,
       name: student.name
     }).then(() => {
@@ -101,7 +108,7 @@ export class CourseService {
     });
   }
   getScheduleDate(courseId: any){
-    return this.db.list(`Course/${courseId}/schedule/attendance/`);
+    return this.db.list(`${this.userUid}/Course/${courseId}/schedule/attendance/`);
   }
 
   getCurrentDate(){
@@ -112,7 +119,7 @@ export class CourseService {
 
   createCheckClass(courseId: any, studentId: any){
     let dateCurrent = this.getCurrentDate();
-    this.db.object(`Course/${courseId}/Students/${studentId}/attendance/${dateCurrent}/`)
+    this.db.object(`${this.userUid}/Course/${courseId}/Students/${studentId}/attendance/${dateCurrent}/`)
     .set({
       date: dateCurrent,
       score: 0
@@ -123,13 +130,13 @@ export class CourseService {
     });
   }
   addSchedule(courseId: any, date: any){
-    this.db.object(`Course/${courseId}/schedule/attendance/${date}`).set({
+    this.db.object(`${this.userUid}/Course/${courseId}/schedule/attendance/${date}`).set({
       date: date
     });
   }
 
   addCheckAfterInsertStudent(courseId: any, studentId: any, date: any){ // when add student after check class
-    this.db.object(`Course/${courseId}/Students/${studentId}/attendance/${date}/`)
+    this.db.object(`${this.userUid}/Course/${courseId}/Students/${studentId}/attendance/${date}/`)
     .set({
       date: date,
       score: 0
@@ -137,7 +144,7 @@ export class CourseService {
   }
 
   insertIBeacon(courseId: any, ibeacon: iBeacon, platform: any){
-    this.db.object(`Course/${courseId}/iBeacon/${platform}/${ibeacon.id}/`).set({
+    this.db.object(`${this.userUid}/Course/${courseId}/iBeacon/${platform}/${ibeacon.id}/`).set({
       id: ibeacon.id,
       name: ibeacon.name
     }).then(() => {

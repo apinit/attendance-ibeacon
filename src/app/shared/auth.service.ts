@@ -7,12 +7,15 @@ export class AuthService {
   constructor(
     private auth: AngularFireAuth
   ) {
-    auth.authState.subscribe((auth) => {
+    this.auth.authState.subscribe((auth) => {
       this.authState = auth;
-    })
+    });
   }
 
   get authenticated(): boolean{
     return this.authState !== null;
+  }
+  get authLogout(): boolean{
+    return this.authState == null;
   }
 }

@@ -27,3 +27,9 @@ export class iBeacon{
     id?: any;
     name?: string;
 }
+export class User{
+    fname: string;
+    lname: string;
+    email: string;
+    password: string;
+}

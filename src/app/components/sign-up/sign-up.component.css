@@ -1,19 +1,18 @@
-input, button, h2{
+input, button, h2, label{
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
 }
-.login{
-    width: 400px;
+.sign-up{
+    width: 100%;
     margin: 0px auto;
     margin-top: 50px;
     padding: 20px;
 }
-.login h2{
+.sign-up h2{
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
-
-.login input{
+.sign-up input{
     display: block;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -26,10 +25,10 @@ input, button, h2{
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
 }
-.login input:focus{
+.sign-up input:focus{
     border: 1px solid #888;
 }
-.login button {
+.sign-up button {
     background: #5d8ffc;
     border: 1px solid #5d8ffc;
     color: #fff;
@@ -43,38 +42,38 @@ input, button, h2{
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
 }
-.login button:hover{
+.sign-up button:hover{
     background: #fff;
     color: #5d8ffc;
     border: 1px solid #5d8ffc;
     cursor: pointer;
 }
-.login button:disabled{
+.sign-up button:disabled{
     background: #8eb1ff;
     color: #fff;
     border: 1px solid #8eb1ff;
     cursor: not-allowed;
 }
-.login form{
+.sign-up form{
     margin-bottom: 10px;
 }
+
 @media(min-width: 800px){
-    input, button, h2{
+    input, button, h2, label{
         font-family: 'Nunito', sans-serif;
         font-weight: 700;
     }
-    .login{
+    .sign-up{
         width: 400px;
         margin: 0px auto;
-        margin-top: 100px;
+        margin-top: 50px;
         padding: 20px;
     }
-    .login h2{
+    .sign-up h2{
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
-    
-    .login input{
+    .sign-up input{
         display: block;
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -87,10 +86,10 @@ input, button, h2{
         -webkit-transition: 0.3s;
         -moz-transition: 0.3s;
     }
-    .login input:focus{
+    .sign-up input:focus{
         border: 1px solid #888;
     }
-    .login button {
+    .sign-up button {
         background: #5d8ffc;
         border: 1px solid #5d8ffc;
         color: #fff;
@@ -104,19 +103,19 @@ input, button, h2{
         -webkit-transition: 0.3s;
         -moz-transition: 0.3s;
     }
-    .login button:hover{
+    .sign-up button:hover{
         background: #fff;
         color: #5d8ffc;
         border: 1px solid #5d8ffc;
         cursor: pointer;
     }
-    .login button:disabled{
+    .sign-up button:disabled{
         background: #8eb1ff;
         color: #fff;
         border: 1px solid #8eb1ff;
         cursor: not-allowed;
     }
-    .login form{
+    .sign-up form{
         margin-bottom: 10px;
     }
 }

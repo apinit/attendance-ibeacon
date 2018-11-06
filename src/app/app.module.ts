@@ -15,6 +15,7 @@ import { LoginService } from './shared/login/login.service';
 import { CourseService } from './shared/course/course.service';
 import { AuthService } from './shared/auth.service';
 import { AuthGuard } from './guard/auth.guard';
+import { ProtectBackwardGuard } from './guard/protect-backward.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -22,15 +23,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CourseComponent } from './components/course/course.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { CourseDetailComponent } from './components/course/course-detail/course-detail.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
 const router: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, canActivate: [ProtectBackwardGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'course', component: CourseComponent, canActivate: [AuthGuard]},
   {path: 'course-detail', component: CourseDetailComponent, canActivate: [AuthGuard]},
-  {path: 'attendance', component: AttendanceComponent, canActivate: [AuthGuard]}
+  {path: 'attendance', component: AttendanceComponent, canActivate: [AuthGuard]},
+  {path: 'sign-up', component: SignUpComponent, canActivate: [ProtectBackwardGuard]}
 ];
 
 @NgModule({
@@ -41,7 +44,8 @@ const router: Routes = [
     NavbarComponent,
     CourseComponent,
     AttendanceComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+    SignUpComponent
   ],
   imports: [
     FormsModule,
@@ -62,7 +66,8 @@ const router: Routes = [
     AuthGuard,
     CourseService,
     DatePipe,
-    AuthService
+    AuthService,
+    ProtectBackwardGuard
   ],
   bootstrap: [AppComponent]
 })

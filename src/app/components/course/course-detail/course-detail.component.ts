@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../../shared/course/course.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Course, Student } from '../../../shared/models';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import * as XLSX from 'ts-xlsx';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
@@ -15,6 +16,11 @@ export class CourseDetailComponent implements OnInit {
   courseId: string;
   course: Course = new Course();
   student: Student = new Student();
+  studentsList: Student[];
+
+  arrayBuffer: any;
+  file: File;
+  selected = false;
 
   // courses: Course[];
   students = [];
@@ -89,13 +95,44 @@ export class CourseDetailComponent implements OnInit {
   }
   updateCourse(){
     this.courseService.updateCourse(this.course);
-    // this.coursed = this.course;
     this.resetForm();
   }
   resetForm() {
     if (this.formCreate != null) {
       this.formCreate.reset();
       // console.log('Reset');
+    }
+  }
+  chooseFile(event) {
+    this.file = event.target.files[0];
+    this.selected = true;
+  }
+  Upload() {
+    let fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        this.arrayBuffer = fileReader.result;
+        var data = new Uint8Array(this.arrayBuffer);
+        var arr = new Array();
+        for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+        var bstr = arr.join("");
+        var workbook = XLSX.read(bstr, {type:"binary"});
+        var sheet = workbook.SheetNames[0];
+        var worksheet = workbook.Sheets[sheet];
+        this.studentsList = [];
+        XLSX.utils.sheet_to_json(worksheet,{raw:true}).forEach((item) => {
+          this.studentsList.push(item);
+        });
+        this.save();
+    }
+    fileReader.readAsArrayBuffer(this.file); // read file
+  }
+  save(){
+    if(this.studentsList.length > 0){
+      for(let i = 0;i < this.studentsList.length; i++){
+        if(this.studentsList[i].id != undefined && this.studentsList[i].name != undefined){
+          this.courseService.insertStudent(this.studentsList[i], this.coursed.id);
+        }
+      }
     }
   }
 }
