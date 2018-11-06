@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { LoginService } from './shared/login/login.service';
 import { CourseService } from './shared/course/course.service';
 import { AuthService } from './shared/auth.service';
+import { ExcelService } from './shared/excel/excel.service';
 import { AuthGuard } from './guard/auth.guard';
 import { ProtectBackwardGuard } from './guard/protect-backward.guard';
 import { AppComponent } from './app.component';
@@ -67,7 +68,8 @@ const router: Routes = [
     CourseService,
     DatePipe,
     AuthService,
-    ProtectBackwardGuard
+    ProtectBackwardGuard,
+    ExcelService
   ],
   bootstrap: [AppComponent]
 })

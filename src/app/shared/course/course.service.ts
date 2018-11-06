@@ -29,7 +29,7 @@ export class CourseService {
   }
 
   createCourse(course: Course){
-    this.db.object(`${this.userUid}/Course/${course.id}/`).set({
+    this.db.object(`Class_Attendance/${this.userUid}/Course/${course.id}/`).set({
       id: course.id,
       name: course.name,
       group: course.group,
@@ -43,7 +43,7 @@ export class CourseService {
   }
 
   updateCourse(course: Course){
-    this.db.object(`${this.userUid}/Course/${course.id}/`).update({
+    this.db.object(`Class_Attendance/${this.userUid}/Course/${course.id}/`).update({
       id: course.id,
       name: course.name,
       group: course.group,
@@ -57,9 +57,9 @@ export class CourseService {
   }
 
   deleteCourse(id: any){
-    this.db.object(`${this.userUid}/Course/${id}`).remove()
+    this.db.object(`Class_Attendance/${this.userUid}/Course/${id}`).remove()
       .then(() => {
-        this.db.object(`${this.userUid}/Course-set`).remove().then(() => {
+        this.db.object(`Class_Attendance/${this.userUid}/Course-set`).remove().then(() => {
           this.router.navigate(['/course']);
         });
         this.toastr.success('ลบรายวิชาสำเร็จ');
@@ -71,7 +71,7 @@ export class CourseService {
   }
 
   setCourseSelected(course: Course){
-    this.db.object(`${this.userUid}/Course-set/`).set({
+    this.db.object(`Class_Attendance/${this.userUid}/Course-set/`).set({
       id: course.id
     }).then(() => {
       this.router.navigate(['/course-detail']);
@@ -79,20 +79,20 @@ export class CourseService {
   }
 
   getCourseSet(){
-    return this.db.object(`${this.userUid}/Course-set/id`);
+    return this.db.object(`Class_Attendance/${this.userUid}/Course-set/id`);
   }
   getCourseList(){
-    return this.db.list(`${this.userUid}/Course/`);
+    return this.db.list(`Class_Attendance/${this.userUid}/Course/`);
   }
   getOneCourse(courseId: any){
-    return this.db.object(`${this.userUid}/Course/${courseId}`);
+    return this.db.object(`Class_Attendance/${this.userUid}/Course/${courseId}`);
   }
   getStudentsList(courseId: any){
-    return this.db.list(`${this.userUid}/Course/${courseId}/Students`);
+    return this.db.list(`Class_Attendance/${this.userUid}/Course/${courseId}/Students`);
   }
   insertStudent(student: Student, courseId: any){
     let studentId = student.id;
-    this.db.object(`${this.userUid}/Course/${courseId}/Students/${student.id}/`).set({
+    this.db.object(`Class_Attendance/${this.userUid}/Course/${courseId}/Students/${student.id}/`).set({
       id: student.id,
       name: student.name
     }).then(() => {
@@ -108,7 +108,7 @@ export class CourseService {
     });
   }
   getScheduleDate(courseId: any){
-    return this.db.list(`${this.userUid}/Course/${courseId}/schedule/attendance/`);
+    return this.db.list(`Class_Attendance/${this.userUid}/Course/${courseId}/schedule/attendance/`);
   }
 
   getCurrentDate(){
@@ -119,7 +119,7 @@ export class CourseService {
 
   createCheckClass(courseId: any, studentId: any){
     let dateCurrent = this.getCurrentDate();
-    this.db.object(`${this.userUid}/Course/${courseId}/Students/${studentId}/attendance/${dateCurrent}/`)
+    this.db.object(`Class_Attendance/${this.userUid}/Course/${courseId}/Students/${studentId}/attendance/${dateCurrent}/`)
     .set({
       date: dateCurrent,
       score: 0
@@ -130,13 +130,13 @@ export class CourseService {
     });
   }
   addSchedule(courseId: any, date: any){
-    this.db.object(`${this.userUid}/Course/${courseId}/schedule/attendance/${date}`).set({
+    this.db.object(`Class_Attendance/${this.userUid}/Course/${courseId}/schedule/attendance/${date}`).set({
       date: date
     });
   }
 
   addCheckAfterInsertStudent(courseId: any, studentId: any, date: any){ // when add student after check class
-    this.db.object(`${this.userUid}/Course/${courseId}/Students/${studentId}/attendance/${date}/`)
+    this.db.object(`Class_Attendance/${this.userUid}/Course/${courseId}/Students/${studentId}/attendance/${date}/`)
     .set({
       date: date,
       score: 0
@@ -144,11 +144,14 @@ export class CourseService {
   }
 
   insertIBeacon(courseId: any, ibeacon: iBeacon, platform: any){
-    this.db.object(`${this.userUid}/Course/${courseId}/iBeacon/${platform}/${ibeacon.id}/`).set({
+    this.db.object(`Class_Attendance/${this.userUid}/iBeacon/${platform}/${ibeacon.id}/`).set({
       id: ibeacon.id,
       name: ibeacon.name
     }).then(() => {
       this.toastr.success('Add iBeacon Success');
     });
+  }
+  getIBeaconList(){
+    return this.db.list(`Class_Attendance/${this.userUid}/iBeacon/ios/`);
   }
 }

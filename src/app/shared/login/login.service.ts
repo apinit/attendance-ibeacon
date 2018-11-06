@@ -34,10 +34,11 @@ export class LoginService {
   }
   signUP(user: User){
     this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password).then((res) => {
-      this.db.object(`${res.uid}/Profile/`).set({
+      this.db.object(`Class_Attendance/${res.uid}/Profile/`).set({
         firstname: user.fname,
         lastname: user.lname,
-        email: user.email
+        email: user.email,
+        uid: res.uid
       });
       this.router.navigate(['/home']);
     });

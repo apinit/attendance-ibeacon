@@ -26,20 +26,21 @@
 
   <div class="card">
       <div class="card-header">
-        iBeacon List (only iOS)
+        รายการ iBeacon ที่ลงทะเบียน (iOS)
       </div>
       <div class="card-body">
         <table class="table table-bordered">
           <thead class="thead-light">
             <tr>
+              <th scope="col">iBeacon ID</th>
               <th scope="col">iBeacon Name</th>
-              <th scope="col">ชื่อวิชา</th>
+              <!-- <th scope="col">ชื่อวิชา</th> -->
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let course of courses; let i = index">
-              <td *ngIf="course.iBeacon">{{course.iBeacon?.ios}}</td>
-              <td *ngIf="course.iBeacon">{{course.name}}</td>
+            <tr *ngFor="let item of iBeacons; let i = index">
+              <td>{{item.id}}</td>
+              <td>{{item.name}}</td>
             </tr>
           </tbody>
         </table>

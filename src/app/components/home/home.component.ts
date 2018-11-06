@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   courseSelected: Course = new  Course();
   selectPlatform: string;
   courses: Course[];
+  iBeacons: iBeacon[];
   ibeacon: iBeacon = new iBeacon();
   ibeaconForm: FormGroup;
   platforms = ['ios', 'android'];
@@ -24,9 +25,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.courseService.getCourseList().valueChanges().subscribe(course => {
-      this.courses = course;
-      // console.log(course);
+    this.courseService.getIBeaconList().valueChanges().subscribe(ib => {
+      this.iBeacons = ib;
+      // console.log(ib);
     });
     this.formBeacon();
   }

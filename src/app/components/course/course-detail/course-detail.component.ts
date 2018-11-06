@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Course, Student } from '../../../shared/models';
 import { Router } from '@angular/router';
 import * as XLSX from 'ts-xlsx';
+import { ExcelService } from '../../../shared/excel/excel.service';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
@@ -21,13 +22,15 @@ export class CourseDetailComponent implements OnInit {
   arrayBuffer: any;
   file: File;
   selected = false;
+  json: Course;
 
   // courses: Course[];
   students = [];
   constructor(
     private courseService: CourseService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private excel: ExcelService
   ) { }
 
   ngOnInit() {
@@ -45,6 +48,7 @@ export class CourseDetailComponent implements OnInit {
           if(course != null){
             this.courseService.getStudentsList(this.coursed.id).valueChanges().subscribe(student => {
               this.students = student;
+              // console.log(student);
             });
           }else{
             this.router.navigate(['/course']);

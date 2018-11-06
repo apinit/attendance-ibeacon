@@ -32,4 +32,5 @@ export class User{
     lname: string;
     email: string;
     password: string;
+    uid: string;
 }
