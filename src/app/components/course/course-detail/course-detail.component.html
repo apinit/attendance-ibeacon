@@ -22,7 +22,7 @@
     <div class="card">
       <div class="card-header">
         เพิ่มนักศึกษา
-        <button class="btn btn-success" style="margin-left: 10px;" data-toggle="modal" data-target="#uploadFile">อัปโหลดรายชื่อนักศึกษา</button>
+        <button class="btn btn-success" style="margin-left: 10px;" data-toggle="modal" data-target="#uploadFile">อัพโหลดรายชื่อนักศึกษา</button>
       </div>
       <form [formGroup]="studentForm" (ngSubmit)="newStudent()">
         <label for="sid">รหัสนักศึกษา</label>
@@ -108,14 +108,19 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="uploadFile">เลือกไฟล์</h5>
+        <h5 class="modal-title" id="uploadFile">
+          เลือกไฟล์
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-          <p><strong class="text-danger">คำเตือน**</strong></p>
-          <p class="text-danger">ถ้าไฟล์อัปโหลดมีรหัสนักศึกษาตรงกันกับข้อมูลเดิม ระบบจะทำการเขียนข้อมูลทับข้อมูลเดิม</p>
+        <img src="../../../../assets/file-pdf-regular.svg" alt="" style="width: 30px; height: 35px;">
+          <a href="https://bit.ly/2SU6Mbq" target="_blank"><strong>คู่มือการเตรียมไฟล์อัพโหลด</strong></a>
+          <p style="margin-top: 20px; margin-bottom: 5px;"><strong class="text-danger">คำเตือน**</strong></p>
+          <p class="text-danger">ถ้าไฟล์อัพโหลดมีรหัสนักศึกษาตรงกันกับข้อมูลเดิม ระบบจะทำการเขียนข้อมูลทับข้อมูลเดิม</p>
+          <hr>
           <input type="file" style="display: inline-block;" (change)="chooseFile($event)" placeholder="Upload file" accept=".xlsx">
           <button type="button" class="btn btn-success" (click)="Upload()" [disabled]="selected === false" style="margin-left: auto;">
             Upload

@@ -1,17 +1,12 @@
 import { Component, OnInit} from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
-  constructor(
-    private auth: AngularFireAuth
-  ) {
+export class AppComponent implements OnInit{
+  constructor() {
     localStorage.removeItem('firebase:previous_websocket_failure');
-    // this.auth.authState.subscribe((auth) => {
-    //   console.log(auth);
-    // });
   }
+  ngOnInit(){}
 }

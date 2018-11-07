@@ -9,11 +9,6 @@
         <input type="text" id="id" placeholder="Enter iBeacon ID..." formControlName="id" [(ngModel)]="ibeacon.id">
         <label for="name">iBeacon Name</label>
         <input type="text" id="name" placeholder="Enter iBeacon Name..." formControlName="name" [(ngModel)]="ibeacon.name">
-        <label for="course">เลือกรายวิชา</label>
-        <select id="course" [(ngModel)]="courseSelected.id" formControlName="course">
-          <option selected hidden value="undefined">เลือกรายวิชา</option>
-          <option *ngFor="let course of courses" [value]="course.id">{{course.name}}</option>
-        </select>
         <label for="platform">เลือก Platforms</label>
         <select id="platform" [(ngModel)]="selectPlatform" formControlName="platform">
           <option selected hidden value="undefined">Select Platform</option>

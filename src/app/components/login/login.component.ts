@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginSerive: LoginService,
     private fb: FormBuilder
-  ) { }
+  ) { localStorage.removeItem('firebase:previous_websocket_failure'); }
 
   ngOnInit() {
     this.createForms();

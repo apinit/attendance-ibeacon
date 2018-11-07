@@ -3,7 +3,7 @@ input, button, h2{
     font-weight: 700;
 }
 .login{
-    width: 400px;
+    width: 100%;
     margin: 0px auto;
     margin-top: 50px;
     padding: 20px;
@@ -58,7 +58,7 @@ input, button, h2{
 .login form{
     margin-bottom: 10px;
 }
-@media(min-width: 800px){
+@media(min-width: 768px){
     input, button, h2{
         font-family: 'Nunito', sans-serif;
         font-weight: 700;

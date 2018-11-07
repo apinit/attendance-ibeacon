@@ -22,7 +22,9 @@ export class HomeComponent implements OnInit {
     private fb: FormBuilder,
     private toastr: ToastrService,
     private courseService: CourseService
-  ) { }
+  ) {
+    localStorage.removeItem('firebase:previous_websocket_failure');
+  }
 
   ngOnInit() {
     this.courseService.getIBeaconList().valueChanges().subscribe(ib => {
@@ -36,7 +38,6 @@ export class HomeComponent implements OnInit {
     this.ibeaconForm = this.fb.group({
       id: ['', Validators.required],
       name: ['', Validators.required],
-      course: ['', Validators.required],
       platform: ['', Validators.required]
     });
   }

@@ -139,4 +139,7 @@ export class CourseDetailComponent implements OnInit {
       }
     }
   }
+  newTab(){
+    window.location.href = 'https://bit.ly/2SVj17j';
+  }
 }
