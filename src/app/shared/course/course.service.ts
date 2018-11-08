@@ -154,4 +154,7 @@ export class CourseService {
   getIBeaconList(){
     return this.db.list(`Class_Attendance/${this.userUid}/iBeacon/ios/`);
   }
+  getiBeaconAndroid(){
+    return this.db.list(`Class_Attendance/${this.userUid}/iBeacon/android/`);
+  }
 }
