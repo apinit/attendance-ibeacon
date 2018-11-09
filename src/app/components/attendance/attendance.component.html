@@ -2,11 +2,15 @@
   <div class="card">
     <div class="card-header">
       เลือกรายวิชา
+      <div class="help-tip">
+        <p>เมื่อทำการเลือกรายวิชา ให้กด Submit ทุกครั้ง</p>
+      </div>
+      <!-- <span class="text-danger" style="margin-left: 10px;">**เมื่อทำการเลือกรายวิชา ให้กด Submit ทุกครั้ง**</span> -->
     </div>
     <div class="card-body">
       <form [formGroup]="formSelectedCourse" (ngSubmit)="courseSelect()">
-          <select id="course" [(ngModel)]="courseSelected.id" formControlName="id">
-              <option selected hidden value="undefined">เลือกรายวิชา</option>
+          <select id="course" [(ngModel)]="courseSelected.id" formControlName="id" (change)="change()">
+            <option selected hidden value="undefined">เลือกรายวิชา</option>
             <option *ngFor="let course of courses" [value]="course.id">{{course.name}}</option>
           </select>
           <button type="submit" [disabled]="formSelectedCourse.invalid">Submit</button>
@@ -14,7 +18,7 @@
     </div> <!--body-->
   </div> <!--card-->
   <div class="action">
-    <button (click)="addCheck()" [disabled]="submitCourse == false || len == 0 || today == false">เพิ่มการเช็ค</button>
+    <button (click)="addCheck()" [disabled]="submitCourse == false || len == 0 || today == false || isChange == true">เพิ่มการเช็ค</button>
   </div>
     <!--display-score-->
   <table class="table table-bordered">
@@ -34,10 +38,10 @@
     <tbody>
       <tr *ngFor="let student of students; let i = index">
         <td scope="row">{{i+1}}</td>
-        <td>{{student.id}}</td>
-        <td id="studentName">{{student.name}}</td>
+        <td>{{student?.id}}</td>
+        <td id="studentName">{{student?.name}}</td>
         <td *ngFor="let sch of scheduleDate">
-          {{student.attendance[sch.date]?.score}}
+          {{student?.attendance[sch.date]?.score}}
         </td>
       </tr>
     </tbody>

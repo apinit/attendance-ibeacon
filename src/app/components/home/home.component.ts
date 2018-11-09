@@ -27,11 +27,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.courseService.getIBeaconList().valueChanges().subscribe(ib => {
       this.iBeacons = ib;
-      console.log(ib);
+      // console.log(ib);
     });
-    this.courseService.getiBeaconAndroid().valueChanges().subscribe((iba) => {
-      console.log(iba);
-    });
+    // this.courseService.getiBeaconAndroid().valueChanges().subscribe((iba) => {
+    //   console.log(iba);
+    // });
     this.formBeacon();
   }
   formBeacon(){

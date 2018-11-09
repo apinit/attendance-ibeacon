@@ -15,7 +15,7 @@ export class Student{
 }
 
 export class Attendance{
-    date?: Date;
+    date?: any;
     score?: number;
 }
 

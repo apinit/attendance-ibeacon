@@ -14,17 +14,20 @@ export class AttendanceComponent implements OnInit {
   len = 0;
   submitCourse = false;
   today = true;
+  isChange = false;
+
+  isScheduleDate = false;
   scheduleDate: Schedule[];
   students: Student[];
   courses: Course[];
-  courseSelected: Course = new Course();;
+  courseSelected: Course = new Course();
   formSelectedCourse: FormGroup;
   constructor(
     private courseService: CourseService,
     private router: Router,
     private fb: FormBuilder,
     private datePipe: DatePipe
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.form();
@@ -38,18 +41,19 @@ export class AttendanceComponent implements OnInit {
     });
   }
   courseSelect(){
+    this.isChange = false;
     this.submitCourse = true;
     let dateCheck = this.getCurrentDate();
-
-    // Clear Array protected error in HTML page
     this.students = [];
     this.scheduleDate = [];
-    
+
     this.courseService.getStudentsList(this.courseSelected.id).valueChanges().subscribe((student) => {
+      this.students = [];
       this.students = student;
       this.len = this.students.length;
     });
     this.courseService.getScheduleDate(this.courseSelected.id).valueChanges().subscribe((schedule) => {
+      this.scheduleDate = [];
       this.scheduleDate = schedule;
       if(this.scheduleDate.length > 0){
         this.scheduleDate.forEach((date) => {
@@ -63,6 +67,9 @@ export class AttendanceComponent implements OnInit {
         this.today = true;
       }
     });
+  }
+  change(){
+    this.isChange = true;
   }
   addCheck(){
     for(let i = 0; i < this.students.length; i++){

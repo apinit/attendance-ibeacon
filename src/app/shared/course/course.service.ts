@@ -59,10 +59,11 @@ export class CourseService {
   deleteCourse(id: any){
     this.db.object(`Class_Attendance/${this.userUid}/Course/${id}`).remove()
       .then(() => {
-        this.db.object(`Class_Attendance/${this.userUid}/Course-set`).remove().then(() => {
+        this.db.object(`Class_Attendance/${this.userUid}/Course-set`).remove()
+        .then(() => {
+          this.toastr.success('ลบรายวิชาสำเร็จ');
           this.router.navigate(['/course']);
         });
-        this.toastr.success('ลบรายวิชาสำเร็จ');
       })
       .catch((err) => {
         console.log(err);
@@ -92,18 +93,18 @@ export class CourseService {
   }
   insertStudent(student: Student, courseId: any){
     let studentId = student.id;
-    this.db.object(`Class_Attendance/${this.userUid}/Course/${courseId}/Students/${student.id}/`).set({
+    this.db.object(`Class_Attendance/${this.userUid}/Course/${courseId}/Students/${studentId}/`).set({
       id: student.id,
       name: student.name
     }).then(() => {
-      this.toastr.success('เพิ่มนักศึกษาสำเร็จ');
+      // this.toastr.success('เพิ่มนักศึกษาสำเร็จ');
       this.getScheduleDate(courseId).valueChanges().subscribe(schedule => {
         this.schedule = schedule;
         for(let i = 0; i < this.schedule.length; i++){
           this.addCheckAfterInsertStudent(courseId, studentId, this.schedule[i].date);
         }
       });
-    }).catch((err) => {
+    }).catch(() => {
       console.log('Error happen for insert student!!!');
     });
   }
