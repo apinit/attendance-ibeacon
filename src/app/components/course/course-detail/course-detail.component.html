@@ -45,14 +45,18 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">รหัสนักศึกษา</th>
-          <th scope="col">ชื่อ - นามสกุล</th>
+          <th scope="col" id="studentName">ชื่อ - นามสกุล</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let student of students; let i = index">
           <td scope="row">{{i+1}}</td>
           <td>{{student?.id}}</td>
-          <td>{{student?.name}}</td>
+          <td id="studentName">{{student?.name}}</td>
+          <td>
+            <button class="btn btn-danger" (click)="removeStudent(student.id)">ลบ</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -112,8 +116,8 @@
       <div class="modal-body">
         <img src="https://bit.ly/2JRk2JK" alt="pdf-file-svg" style="width: 30px; height: 35px;">
           <a href="https://bit.ly/2SU6Mbq" target="_blank"><strong>คู่มือการเตรียมไฟล์อัพโหลด</strong></a>
-          <p style="margin-top: 20px; margin-bottom: 5px;"><strong class="text-danger">คำเตือน**</strong></p>
-          <p class="text-danger">ถ้าไฟล์อัพโหลดมีรหัสนักศึกษาตรงกันกับข้อมูลเดิม ระบบจะทำการเขียนข้อมูลทับข้อมูลเดิม</p>
+          <!-- <p style="margin-top: 20px; margin-bottom: 5px;"><strong class="text-danger">คำเตือน**</strong></p> -->
+          <!-- <p class="text-danger">ถ้าไฟล์อัพโหลดมีรหัสนักศึกษาตรงกันกับข้อมูลเดิม ระบบจะทำการเขียนข้อมูลทับข้อมูลเดิม</p> -->
           <hr>
           <input type="file" style="display: inline-block;" (change)="chooseFile($event)" placeholder="Upload file" accept=".xlsx">
           <button type="button" class="btn btn-success" (click)="Upload()" [disabled]="selected === false" style="margin-left: auto;">

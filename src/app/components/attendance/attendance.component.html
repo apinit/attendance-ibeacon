@@ -29,8 +29,7 @@
         <th scope="col" id="studentName">ชื่อ - นามสกุล</th>
         <th *ngFor="let sch of scheduleDate; let no = index">
             <span 
-            data-toggle="tooltip" 
-            data-placement="top" 
+            data-toggle="tooltip"
             title="{{sch.date}}">{{no+1}}</span>
         </th>
       </tr>

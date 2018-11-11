@@ -3,13 +3,13 @@ nav{
     background: #5d8ffc;
     color: #fff;
     top: 0;
+    right: 0;
+    left: 0;
     position: sticky;
     z-index: 1000;
-    /* display: flex; */
 }
 nav h2{
     text-align: center;
-    /* margin-left: 15px; */
     color: #fff;
     font-family: 'Nunito', sans-serif;
     font-weight: 500;
@@ -19,12 +19,11 @@ ul{
     margin: 0px auto;
     width: 100%;
     padding: 0;
-
 }
 ul li{
     list-style: none;
-    padding: 20px;
-    display: inline-block;
+    padding: 10px;
+    display: flex;
     cursor: pointer;
 }
 ul li:hover{
@@ -76,15 +75,15 @@ ul li a{
     ul li:hover{
         background: salmon;
         color: #5d8ffc;
-        /* transition: 0.2s;
-        -webkit-transition: 0.2s;
-        -moz-transition: 0.2s; */
     }
     ul li a{
         color: #fff;
         font-family: 'Nunito', sans-serif;
         font-weight: 600;
         text-decoration: none;
+    }
+    .toggle-button{
+        display: none;
     }
 }
 

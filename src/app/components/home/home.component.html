@@ -21,10 +21,31 @@
 
   <div class="card">
       <div class="card-header">
-        รายการ iBeacon ที่ลงทะเบียน (iOS)
+        iBeacon ที่ลงทะเบียน
       </div>
       <div class="card-body">
-        <table class="table table-bordered">
+        <div class="display-ibeacon">
+          <div class="android">
+            <header>
+              Android
+            </header>
+            <div class="circle-text">
+              <p>{{iBeaconAndroid}}</p>
+            </div>
+            <button class="btn btn-success" data-toggle="modal" data-target="#androidViewiBeacon">ดูรายการ</button>
+          </div>
+          <div class="ios">
+            <header>
+              iOS
+            </header>
+            <div class="circle-text">
+              <p>{{iBeaconiOS}}</p>
+            </div>
+            <button class="btn btn-secondary" data-toggle="modal" data-target="#iosViewiBeacon">ดูรายการ</button>
+          </div>
+        </div>
+        <!-- <img id="android" src="https://bit.ly/2Dd09vb" alt="android"> -->
+        <!-- <table class="table table-bordered">
           <thead class="thead-light">
             <tr>
               <th scope="col">iBeacon ID</th>
@@ -36,9 +57,84 @@
             <tr *ngFor="let item of iBeacons; let i = index">
               <td>{{item.id}}</td>
               <td>{{item.name}}</td>
+              <td>ios</td>
+            </tr>
+          </tbody>
+        </table> -->
+      </div>
+    </div>
+</div>
+
+
+<!--iBeacon-display-android-->
+<div class="modal fade" id="androidViewiBeacon" tabindex="-1" role="dialog" aria-labelledby="androidViewiBeacon" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="androidViewiBeacon">
+          รายการ iBeacon (Android)
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let android of iBeaconsAndroid">
+              <td>{{android.id}}</td>
+              <td>{{android.name}}</td>
+              <td>
+                <button class="btn btn-danger" (click)="deleteiBeaconAndroid(android.id)">ลบ</button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+</div>
+
+
+<!--iBeacon-display-ios-->
+<div class="modal fade" id="iosViewiBeacon" tabindex="-1" role="dialog" aria-labelledby="iosViewiBeacon" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="iosViewiBeacon">
+          รายการ iBeacon (iOS)
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ios of iBeaconsiOS">
+              <td>{{ios.id}}</td>
+              <td>{{ios.name}}</td>
+              <td>
+                <button class="btn btn-danger" (click)="deleteiBeaconiOS(ios.id)">ลบ</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

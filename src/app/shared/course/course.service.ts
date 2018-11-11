@@ -144,7 +144,7 @@ export class CourseService {
     });
   }
 
-  insertIBeacon(courseId: any, ibeacon: iBeacon, platform: any){
+  insertIBeacon(ibeacon: iBeacon, platform: any){
     this.db.object(`Class_Attendance/${this.userUid}/iBeacon/${platform}/${ibeacon.id}/`).set({
       id: ibeacon.id,
       name: ibeacon.name
@@ -152,10 +152,37 @@ export class CourseService {
       this.toastr.success('Add iBeacon Success');
     });
   }
-  getIBeaconList(){
+  getiBeaconiOS(){
     return this.db.list(`Class_Attendance/${this.userUid}/iBeacon/ios/`);
   }
   getiBeaconAndroid(){
     return this.db.list(`Class_Attendance/${this.userUid}/iBeacon/android/`);
+  }
+  deleteStudent(courseId: any, studentId: any){
+    this.db.object(`Class_Attendance/${this.userUid}/Course/${courseId}/Students/${studentId}`).remove()
+      .then(() => {
+        this.toastr.success('Delete Student Success');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  deleteiBeaconAndroid(iBeacinID: any){
+    this.db.object(`Class_Attendance/${this.userUid}/iBeacon/android/${iBeacinID}`).remove()
+      .then(() => {
+        this.toastr.success('Delete Success');
+      })
+      .catch((err) => {
+        console.log(err + 'Error Happen!!');
+      });
+  }
+  deleteiBeaconiOS(iBeacinID: any){
+    this.db.object(`Class_Attendance/${this.userUid}/iBeacon/ios/${iBeacinID}`).remove()
+      .then(() => {
+        this.toastr.success('Delete Success');
+      })
+      .catch((err) => {
+        console.log(err + 'Error Happen!!');
+      });
   }
 }

@@ -13,10 +13,15 @@ export class HomeComponent implements OnInit {
   courseSelected: Course = new  Course();
   selectPlatform: string;
   courses: Course[];
-  iBeacons: iBeacon[];
   ibeacon: iBeacon = new iBeacon();
   ibeaconForm: FormGroup;
   platforms = ['ios', 'android'];
+
+  iBeaconAndroid: any;
+  iBeaconsAndroid: iBeacon[];
+
+  iBeaconiOS: any;
+  iBeaconsiOS: iBeacon[];
   constructor(
     private fb: FormBuilder,
     private courseService: CourseService
@@ -25,13 +30,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courseService.getIBeaconList().valueChanges().subscribe(ib => {
-      this.iBeacons = ib;
-      // console.log(ib);
+    this.courseService.getiBeaconAndroid().valueChanges().subscribe(iba => {
+      this.iBeaconsAndroid = iba;
+      this.iBeaconAndroid = iba.length;
     });
-    // this.courseService.getiBeaconAndroid().valueChanges().subscribe((iba) => {
-    //   console.log(iba);
-    // });
+    this.courseService.getiBeaconiOS().valueChanges().subscribe(ibo => {
+      this.iBeaconsiOS = ibo;
+      this.iBeaconiOS = ibo.length;
+    });
     this.formBeacon();
   }
   formBeacon(){
@@ -43,7 +49,13 @@ export class HomeComponent implements OnInit {
   }
 
   createiBeacon(){
-    this.courseService.insertIBeacon(this.courseSelected.id, this.ibeacon, this.selectPlatform);
+    this.courseService.insertIBeacon(this.ibeacon, this.selectPlatform);
     this.ibeaconForm.reset();
+  }
+  deleteiBeaconAndroid(iBeaconID: any){
+    this.courseService.deleteiBeaconAndroid(iBeaconID);
+  }
+  deleteiBeaconiOS(iBeaconID: any){
+    this.courseService.deleteiBeaconiOS(iBeaconID);
   }
 }

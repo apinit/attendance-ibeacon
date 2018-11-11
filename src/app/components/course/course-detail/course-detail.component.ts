@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Course, Student } from '../../../shared/models';
 import { Router } from '@angular/router';
 import * as XLSX from 'ts-xlsx';
-import { ExcelService } from '../../../shared/excel/excel.service';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
@@ -29,8 +28,7 @@ export class CourseDetailComponent implements OnInit {
   constructor(
     private courseService: CourseService,
     private router: Router,
-    private fb: FormBuilder,
-    private excel: ExcelService
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -138,5 +136,8 @@ export class CourseDetailComponent implements OnInit {
         }
       }
     }
+  }
+  removeStudent(sId: any){
+    this.courseService.deleteStudent(this.coursed.id, sId);
   }
 }

@@ -23,13 +23,6 @@ export class NavbarComponent implements OnInit {
         this.isLogin = false;
       }
     });
-    // this.loginSerice.getAuth().subscribe((auth) => {
-    //   if(auth){
-    //     this.isLogin = true;
-    //   }else{
-    //     this.isLogin = false;
-    //   }
-    // });
   }
 
   logout(){

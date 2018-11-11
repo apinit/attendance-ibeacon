@@ -64,11 +64,82 @@ form button:disabled{
     border: 1px solid #8eb1ff;
     cursor: not-allowed;
 }
+/*More iBeacon Display*/
+.display-ibeacon{
+    display: block;
+}
+.display-ibeacon .android,.ios{
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid; */
+    margin-bottom: 45px;
+}
+.display-ibeacon .android header{
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+}
+.display-ibeacon .ios header{
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+}
+.display-ibeacon .android .circle-text{
+    margin: auto;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background: #5d8ffc;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+.display-ibeacon .ios .circle-text{
+    margin: auto;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background: #5d8ffc;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+.display-ibeacon .android .circle-text p{
+    height: 200px;
+    width: 200px;
+    display: table-cell;
+    font-size: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+}
+.display-ibeacon .ios .circle-text p{
+    height: 200px;
+    width: 200px;
+    display: table-cell;
+    font-size: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+}
+.display-ibeacon .android button{
+    display: flex;
+    margin: auto;
+    /* margin-bottom: 15px; */
+}
+.display-ibeacon .ios button{
+    display: flex;
+    margin: auto;
+}
 
-@media(min-width: 900px){
+@media(min-width: 800px){
     .home{
         font-family: 'Nunito', sans-serif;
-        /* border: 1px solid salmon; */
         margin: 20px;
         display: flex;
     }
@@ -85,7 +156,6 @@ form button:disabled{
         font-weight: 700;
         font-size: 30px;
     }
-
 
     form input,#course,#platform{
         display: block;
@@ -133,4 +203,93 @@ form button:disabled{
         border: 1px solid #8eb1ff;
         cursor: not-allowed;
     }
+
+    .display-ibeacon{
+        display: flex;
+    }
+    .display-ibeacon .android{
+        border-right: 1px double;
+    }
+    .display-ibeacon .android,.ios{
+        display: block;
+        width: 100%;
+        height: 100%;
+        /* border: 1px solid; */
+    }
+    .display-ibeacon .android header{
+        text-align: center;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+        font-size: 30px;
+    }
+    .display-ibeacon .ios header{
+        text-align: center;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+        font-size: 30px;
+    }
+    .display-ibeacon .android .circle-text{
+        margin: auto;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        background: #5d8ffc;
+        color: #ffffff;
+        margin-bottom: 25px;
+    }
+    .display-ibeacon .ios .circle-text{
+        margin: auto;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        background: #5d8ffc;
+        color: #ffffff;
+        margin-bottom: 25px;
+    }
+    .display-ibeacon .android .circle-text p{
+        height: 200px;
+        width: 200px;
+        display: table-cell;
+        font-size: 60px;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 50%;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+        /* font-family: 'Nunito', sans-serif;
+        font-weight: 600;
+        font-size: 25px;
+        background: #5d8ffc;
+        color: #ffffff; */
+    }
+    .display-ibeacon .ios .circle-text p{
+        height: 200px;
+        width: 200px;
+        display: table-cell;
+        font-size: 60px;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 50%;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+    }
+    .display-ibeacon .android button{
+        display: flex;
+        margin: auto;
+    }
+    .display-ibeacon .ios button{
+        display: flex;
+        margin: auto;
+    }
+    /* .circle-text {
+        height: 200px;
+        width: 200px;
+        text-align: center;
+
+        vertical-align: middle;
+        border-radius: 50%;
+        background: #000;
+        color: #ffffff;
+        font: 50px "josefin sans", arial;
+    } */
 }

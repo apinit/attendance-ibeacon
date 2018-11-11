@@ -153,6 +153,12 @@ form button:disabled{
 .course-info .card .card-header button{
     margin-left: 20px;
 }
+.display .display-student .table .thead-light tr th#studentName{
+    display: none;
+}
+.display .display-student .table tbody tr td#studentName{
+    display: none;
+}
 
 /*Media***********************************************************************************/
 @media(min-width: 900px){
@@ -287,5 +293,11 @@ form button:disabled{
     }
     .course-info .card .card-header button{
         margin-left: 20px;
+    }
+    .display .display-student .table .thead-light tr th#studentName{
+        display: block;
+    }
+    .display .display-student .table tbody tr td#studentName{
+        display: block;
     }
 }
